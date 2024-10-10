@@ -57,28 +57,12 @@ const userSchema = new mongoose.Schema({
         enum:{
             values:["voter", "admin"],
             message: "${VALUE} is incorrect role type"
-        }
+        },
+        required:true
     },
     isVoted:{
         type:Boolean,
         default:false
-    },
-    votes:[
-        {
-            user:{
-                type : mongoose.Schema.Types.ObjectId,
-                ref: "User",
-                required : true
-            },
-            votedAt:{
-                type: Date,
-                default : Date.now()
-            }
-        }
-    ],
-    voteCount:{
-        type:Number,
-        default : 0
     }
 
 },{timestamps :  true});

@@ -12,12 +12,12 @@ userRouter.post("/signup",  async (req,res)=>{
     try {
 
         validateSignUpData(req);
-        const {firstName ,  lastName , age, password , email , adharCard} =  req.body;
+        const {firstName ,  lastName , age, password , email , adharCard , role} =  req.body;
 
         const hashPass = await bcrypt.hash(password , 10);
         
         const user = new User({
-            firstName , lastName, age,email , adharCard , password: hashPass
+            firstName , lastName, age,email , adharCard , role ,  password: hashPass
         })
        await user.save();
        return res.status(200).json({data : user})

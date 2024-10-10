@@ -1,4 +1,5 @@
 const validator = require("validator");
+const { User } = require("../models/user");
 
 
 const validateSignUpData = async(req) =>{
@@ -25,4 +26,13 @@ const validateChangeData = async (req) =>{
   return isEditAllowed;
 }
 
-module.exports = {validateSignUpData ,  validateChangeData}
+const IsAdmin = async(user) =>{
+  
+  return  user.role == "admin";
+} 
+
+const isVoter = async (user) =>{
+ return user.role == "voter";
+}
+
+module.exports = {validateSignUpData ,  validateChangeData , IsAdmin , isVoter}
